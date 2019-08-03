@@ -1,5 +1,7 @@
 {
   "name": "\\guardians",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

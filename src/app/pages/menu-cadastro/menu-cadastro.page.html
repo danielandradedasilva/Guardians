@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Cadastro</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <h1 text-center>
+        <img src="assets/img/logoGuardians.jpg">
+    </h1>
+
+    <h4 text-center>
+        Bem-vindo(a)!
+    </h4>
+    <ion-card>
+        <p>Para usar o Guardians, o primeiro passo <br>é escolher entre Guardião ou Genitor Pagador.
+        </p>
+    </ion-card>
+
+    <ion-button padding expand="block" (click)="irPara('cadastro-guardiao')">Guardião</ion-button>
+    <ion-button padding expand="block" (click)="irPara('cadastro-pagador')">G.Pagador</ion-button>
+    <br>
+    <p>Não sabe qual opção escolher?</p>
+    <ion-button fill="clear" expand="block" (click)="alert()">Clique Aqui!</ion-button>
+
+</ion-content>

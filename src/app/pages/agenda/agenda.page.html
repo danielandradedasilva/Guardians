@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title>Agenda</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <!-- Botões  -->
+    <ion-tabs>
+        <ion-tab-bar slot="bottom">
+
+            <!-- Botão do Menu-->
+            <ion-menu-button color="primary"></ion-menu-button>
+
+            <!-- Botões home, financeiro e agenda -->
+            <ion-tab-button tab="home" (click)="voltar('home')">
+                <ion-icon name="Home" color="primary"></ion-icon>
+                <ion-label color="primary">Home</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button tab="financeiro">
+                <ion-icon name="calculator" color="primary" (click)="proximo('financeiro')"></ion-icon>
+                <ion-label color="primary">Financeiro</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button tab="agenda" (click)="proximo('agenda')">
+                <ion-icon name="list-box" color="primary"></ion-icon>
+                <ion-label color="primary">Agenda</ion-label>
+            </ion-tab-button>
+
+
+        </ion-tab-bar>
+    </ion-tabs>
+
+</ion-content>
