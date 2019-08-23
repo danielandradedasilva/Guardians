@@ -24,7 +24,12 @@ export class AppComponent {
       title: 'Sobre Nós',
       url: '',
       icon: 'contacts'
-    }
+    },
+    {
+      title: 'Urgencia',
+      url: '/contatos-urgencia',
+      icon: 'ios-call'
+    },
   ];
 
   constructor(
