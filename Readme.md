@@ -13,8 +13,10 @@
 
   $ionic serve 
 -----------------------------------------------------------------
+                  24/08/2019
+
 * Algumas modificações foram feitas, para termos uma rota segura dentro da aplicão.
 
 * Assim quando forem criar uma page, usem esse comando:
   
-* ionic g page tasks/page/nomeDaPágina.
+* "ionic g page tasks/page/nomeDaPágina".
