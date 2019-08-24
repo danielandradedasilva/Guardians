@@ -18,7 +18,9 @@ const routes: Routes = [
   { path: 'cadastro-pagador4', loadChildren: './tasks/page/cadastro-pagador4/cadastro-pagador4.module#CadastroPagador4PageModule' },
   { path: 'agenda', loadChildren: './tasks/page/agenda/agenda.module#AgendaPageModule' },
   { path: 'financeiro', loadChildren: './tasks/page/financeiro/financeiro.module#FinanceiroPageModule' },
-  { path: 'cadastro-crianca', loadChildren: './tasks/page/cadastro-crianca/cadastro-crianca.module#CadastroCriancaPageModule'}
+  { path: 'cadastro-crianca', loadChildren: './tasks/page/cadastro-crianca/cadastro-crianca.module#CadastroCriancaPageModule'},
+  { path: 'cadastro-urgencia', loadChildren: './tasks/page/urgencia/cadastro-urgencia/cadastro-urgencia.module#CadastroUrgenciaPageModule' },
+  { path: 'contatos-urgencia', loadChildren: './tasks/page/urgencia/contatos-urgencia/contatos-urgencia.module#ContatosUrgenciaPageModule' }
 ];
 
 @NgModule({

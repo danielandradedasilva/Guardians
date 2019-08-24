@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title text-center padding>Cadastrar Urgências</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content text-center padding>
+    <p>Selecione uma Urgência</p>
+    <ion-card>
+        <!-- Adicionar mais tipos de Urgências para ser selecionado -->
+        <ion-item>
+            <ion-select placeholder="Selecione...">
+                <ion-select-option value="A">Atraso</ion-select-option>
+                <ion-select-option value="M">Medicinal</ion-select-option>
+                <ion-select-option value="O">Odontológico</ion-select-option>
+                <ion-select-option value="R">Remedios</ion-select-option>
+                <ion-select-option value="ou">Outros</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating"></ion-label>
+            <ion-input type="tel" placeholder="Telefone caso de emergência ex:(192, 191, 190...)"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating"></ion-label>
+            <ion-input type="tel" placeholder="Telefone Em caso de convênios"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating"></ion-label>
+            <ion-input type="tel" placeholder="Telefone de Parente para caso de emergência "></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating"></ion-label>
+            <ion-input type="tel" placeholder="Telefone de Parente para caso de emergência "></ion-input>
+        </ion-item>
+    </ion-card>
+
+    <!-- O botão de enviar ele envia outro tipo de Urgência para o cadastro dele -->
+    <ion-button>
+        <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        Enviar
+    </ion-button>
+
+
+    <!-- Botões  -->
+    <ion-tabs>
+
+        <ion-tab-bar slot="bottom">
+
+            <!-- Botão do Menu-->
+            <ion-menu-button color="primary"></ion-menu-button>
+
+            <!-- Botões home, financeiro e agenda -->
+            <ion-tab-button tab="home">
+                <ion-icon name="Home" color="primary"></ion-icon>
+                <ion-label color="primary">Home</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button (click)="navegar('contatos-urgencia')">
+                <ion-icon name="ios-contacts" color="primary"></ion-icon>
+                <ion-label color="primary">Contatos</ion-label>
+            </ion-tab-button>
+
+            <ion-tab-button (click)="navegar('cadastro-urgencia')">
+                <ion-icon name="md-add-circle" color="primary"></ion-icon>
+                <ion-label color="primary">Add Urgencia</ion-label>
+            </ion-tab-button>
+
+        </ion-tab-bar>
+    </ion-tabs>
+</ion-content>

@@ -49,7 +49,12 @@ const routes: Routes = [
      },
      { path: 'cadastro-crianca',
      loadChildren: './page/cadastro-crianca/cadastro-crianca.module#CadastroCriancaPageModule'
-    }
+    },
+    {
+       path: 'cadastro-urgencia',
+        loadChildren: './page/urgencia/cadastro-urgencia/cadastro-urgencia.module#CadastroUrgenciaPageModule' },
+    { path: 'contatos-urgencia',
+     loadChildren: './page/urgencia/contatos-urgencia/contatos-urgencia.module#ContatosUrgenciaPageModule' }
 ];
 
 @NgModule({
