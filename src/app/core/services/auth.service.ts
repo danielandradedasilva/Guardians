@@ -1,4 +1,4 @@
-import { User, AuthOptions, AuthProvider } from './auth.types';
+import {  AuthOptions, AuthProvider, User } from './auth.types';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
@@ -13,7 +13,7 @@ export class AuthService {
   authState$: Observable<firebase.User>;
 
   constructor(private afAuth: AngularFireAuth) {
-    this.authState$ = this.authState$;
+    this.authState$ = this.afAuth.authState;
    }
 
    get isAuthenticated(): Observable<boolean> {
@@ -23,10 +23,10 @@ export class AuthService {
   authenticate({ isSignIn, provider, user }: AuthOptions): Promise<auth.UserCredential> {
     let operation: Promise<auth.UserCredential>;
 
-    if(provider !== AuthProvider.Email) {
-      operation = this.signinWithEmail(user);
+    if (provider !== AuthProvider.Email) {
+      operation = this.signInWithPopup(provider);
     } else {
-      operation =  this.signUpWithEmail(user);
+      operation = isSignIn ? this.signInWithEmail(user) : this.signUpWithEmail(user);
     }
 
     return operation;
@@ -36,10 +36,10 @@ export class AuthService {
     return this.afAuth.auth.signOut();
   }
 
-  private signinWithEmail({ email, password }: User): Promise<auth.UserCredential> {
+  private signInWithEmail({ email, password }: User): Promise<auth.UserCredential> {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
-  private signUpWithEmail({ name, email, password }: User): Promise<auth.UserCredential> {
+  private signUpWithEmail({ email, password, name }: User): Promise<auth.UserCredential> {
     return this.afAuth.auth
       .createUserWithEmailAndPassword(email, password)
         .then(credentials =>
@@ -48,4 +48,16 @@ export class AuthService {
             .then(() => credentials)
         );
      }
-   }
+
+     private signInWithPopup(provider: AuthProvider ): Promise<auth.UserCredential> {
+       let signInProvider = null;
+
+       switch (provider) {
+        case AuthProvider.Facebook :
+          signInProvider = new auth.FacebookAuthProvider();
+          break;
+      }
+
+       return this.afAuth.auth.signInWithPopup(signInProvider);
+     }
+  }

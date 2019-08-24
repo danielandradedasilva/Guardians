@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<ion-content color="medium">
+
+    <h1 text-center>
+        <img src="assets/img/logoGuardians.jpg">
+    </h1>
+
+    <!-- Formulário para login -->
+
+    <ion-card color="light">
+
+        <form [formGroup]="authForm" (submit)="onSubmit(authProviders.Email)">
+
+            <!-- Container para criar um novo usuário -->
+            <ng-container *ngIf="!configs.isSignIn">
+                <ion-item class="item">
+                    <ion-icon name="person" color="primary" slot="start"></ion-icon>
+                    <ion-input type="text" placeholder="Nome" formControlName="name"></ion-input>
+                    <!-- Mensagem de campo obrigatório -->
+                    <ion-note slot="end" color="danger" *ngIf="name.dirty && name.hasError('required')">Campo Obrigatório</ion-note>
+                    <!-- Mensagem de senha inválido -->
+                    <ion-note slot="end" color="danger" *ngIf="name.dirty && name.hasError('minlength')">Nome completo</ion-note>
+                </ion-item>
+            </ng-container>
+
+
+            <ion-item class="item">
+                <ion-icon name="mail" color="primary" slot="start"></ion-icon>
+                <ion-input type="email" placeholder="Email" formControlName="email" inputmode="email" autofocus="true"></ion-input>
+                <!-- Mensagem de campo obrigatório -->
+                <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('required')">Campo Obrigatório</ion-note>
+                <!-- Mensagem de email inválido -->
+                <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('email')">Email Inválido</ion-note>
+            </ion-item>
+
+            <ion-item class="item">
+                <ion-icon name="lock" color="primary" slot="start"></ion-icon>
+                <ion-input type="password" placeholder="Senha" formControlName="password"></ion-input>
+                <!-- Mensagem de campo obrigatório -->
+                <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('required')">Campo Obrigatório</ion-note>
+                <!-- Mensagem de senha inválido -->
+                <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('minlength')">Min 6 caracteres</ion-note>
+            </ion-item>
+
+            <ion-button expand="block" type="submit" padding id="btnEntrar" [disabled]="authForm.invalid">{{ configs.action }}</ion-button>
+        </form>
+
+        <ion-button expand="block" fill="clear" (click)="changeAuthAction()" id="btnNovaConta">{{ configs.actionChange }}</ion-button>
+
+        <ion-button expand="block" (click)="onSubmit(authProviders.Facebook)">
+            <ion-icon name="logo-facebook" slot="start"></ion-icon>
+            Entrar com facebook
+        </ion-button>
+
+    </ion-card>
+
+</ion-content>

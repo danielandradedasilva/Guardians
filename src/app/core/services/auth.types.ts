@@ -1,5 +1,6 @@
 export enum AuthProvider {
     Email,
+    Facebook
 }
 
 export interface User {
