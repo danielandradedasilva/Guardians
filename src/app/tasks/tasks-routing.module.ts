@@ -46,7 +46,10 @@ const routes: Routes = [
      },
      { path: 'financeiro',
       loadChildren: './page/financeiro/financeiro.module#FinanceiroPageModule'
-     }
+     },
+     { path: 'cadastro-crianca',
+     loadChildren: './page/cadastro-crianca/cadastro-crianca.module#CadastroCriancaPageModule'
+    }
 ];
 
 @NgModule({

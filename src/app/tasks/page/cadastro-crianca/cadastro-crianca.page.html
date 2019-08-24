@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Cadastro  Crianças</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content  text-center padding>
+
+    <ion-card>
+
+        <ion-item>
+            <ion-label position="floating">Nome Completo</ion-label>
+            <ion-input></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">CPF</ion-label>
+            <ion-input type="number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="ion-margin-top" position="floating">Data de nascimento</ion-label>
+            <ion-datetime display-format="DD/MM/YYYY" min="1950" max="2020"></ion-datetime>
+        </ion-item>
+        
+        <ion-item class="ion-margin-top" lines="nune" >
+            <ion-input type="text" placeholder="Lugares que gosta" ></ion-input>
+        </ion-item>
+  
+        <ion-item class="ion-margin-top" lines="nune" >
+            <ion-input type="text" placeholder="Alergias" ></ion-input>
+        </ion-item>
+  
+        <ion-item class="ion-margin-top" lines="nune" >
+            <ion-input type="text" placeholder="Remédios" ></ion-input>
+        </ion-item>
+  
+        <ion-item class="ion-margin-top" lines="nune" >
+            <ion-input type="text" placeholder="O que não pode comer" ></ion-input>
+        </ion-item>
+
+        <ion-button  class="ion-margin-top" >
+                <ion-icon slot="end" ></ion-icon>
+                Cadastrar
+        </ion-button>
+            
+    </ion-card>
+     
+   
+
+
+
+</ion-content>
