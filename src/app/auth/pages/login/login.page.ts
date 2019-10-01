@@ -73,7 +73,7 @@ export class LoginPage implements OnInit {
         provider
       });
       /* metodo para navegar para pagiana menu-cadastro, se o usuário efetuar o login co sucesso*/
-      this.navCtrl.navigateForward(this.route.snapshot.queryParamMap.get('redirect') || '/menu-cadastro');
+      this.navCtrl.navigateForward(this.route.snapshot.queryParamMap.get('redirect') || '/home');
       /* fim */
     } catch (e) {
       console.log('Erro: ', e);
