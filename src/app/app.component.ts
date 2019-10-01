@@ -30,6 +30,11 @@ export class AppComponent {
       url: '/contatos-urgencia',
       icon: 'ios-call'
     },
+    {
+      title:'Menu-Cadastro',
+      url:'/menu-cadastro',
+      icon: 'ios-person-add'
+    }
   ];
 
   constructor(
