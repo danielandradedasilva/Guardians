@@ -9,14 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class CadastroUrgenciaPage implements OnInit {
 
   constructor(private navCtrl: NavController) { }
-   
+
   ngOnInit() {
   }
-  navegar( page ){
-    
-    this.navCtrl.navigateForward( page );
-   
-
+  proximo(nomeDaPagina: string) {
+    this.navCtrl.navigateForward(nomeDaPagina);
   }
-  
 }

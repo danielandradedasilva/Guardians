@@ -4,55 +4,87 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title>Cadastro  Crianças</ion-title>
+        <ion-title>Cadastro da Criança</ion-title>
     </ion-toolbar>
 </ion-header>
 
 
-<ion-content  text-center padding>
+<ion-content text-center padding>
+
+
+    <h4 text-center>
+        Faça o cadastro do seu filho!
+    </h4>
+
+    <p>
+        Se tiver mais de um filho, após cadastrar o primeiro retorne no menu cadastro,<br> e adicione o outro filho.
+    </p>
+
 
     <ion-card>
 
         <ion-item>
             <ion-label position="floating">Nome Completo</ion-label>
-            <ion-input></ion-input>
+            <ion-input type="text" [(ngModel)]="crianca.nome"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">RG</ion-label>
+            <ion-input type="number" [(ngModel)]="crianca.rg"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label position="floating">CPF</ion-label>
-            <ion-input type="number"></ion-input>
+            <ion-input type="number" [(ngModel)]="crianca.cpf"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label class="ion-margin-top" position="floating">Data de nascimento</ion-label>
-            <ion-datetime display-format="DD/MM/YYYY" min="1950" max="2020"></ion-datetime>
-        </ion-item>
-        
-        <ion-item class="ion-margin-top" lines="nune" >
-            <ion-input type="text" placeholder="Lugares que gosta" ></ion-input>
-        </ion-item>
-  
-        <ion-item class="ion-margin-top" lines="nune" >
-            <ion-input type="text" placeholder="Alergias" ></ion-input>
-        </ion-item>
-  
-        <ion-item class="ion-margin-top" lines="nune" >
-            <ion-input type="text" placeholder="Remédios" ></ion-input>
-        </ion-item>
-  
-        <ion-item class="ion-margin-top" lines="nune" >
-            <ion-input type="text" placeholder="O que não pode comer" ></ion-input>
+            <ion-datetime display-format="DD/MM/YYYY" min="1950" max="2020" done-text="Ok" cancel-text="Cancelar" type="number" [(ngModel)]="crianca.dataDeNascimento"></ion-datetime>
         </ion-item>
 
-        <ion-button  class="ion-margin-top" >
-                <ion-icon slot="end" ></ion-icon>
-                Cadastrar
-        </ion-button>
-            
+        <ion-item>
+            <ion-label position="floating">Sexo</ion-label>
+            <ion-select cancelText="Cancelar" type="text" [(ngModel)]="crianca.sexo">
+                <ion-select-option value="Feminino">Feminino</ion-select-option>
+                <ion-select-option value="Masculino">Masculino</ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="text" [(ngModel)]="crianca.email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Passeio</ion-label>
+            <ion-input type="text" [(ngModel)]="crianca.passeio"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Lugares que gosta</ion-label>
+            <ion-input type="text" [(ngModel)]="crianca.lugaresQueGosta"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Alergias</ion-label>
+            <ion-input type="text" [(ngModel)]="crianca.alergias"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Remédios</ion-label>
+            <ion-input type="text" [(ngModel)]="crianca.remedios"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="floating">Restrição alimentar</ion-label>
+            <ion-input type="text" [(ngModel)]="crianca.restricaoAlimentar"></ion-input>
+        </ion-item>
+
     </ion-card>
-     
-   
 
-
+    <ion-button (click)="saveCrianca()">
+        Cadastrar filho
+    </ion-button>
 
 </ion-content>

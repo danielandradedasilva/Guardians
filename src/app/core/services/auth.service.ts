@@ -9,6 +9,9 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
+  getAuth() {
+   return this.afAuth.auth;
+  }
 
   authState$: Observable<firebase.User>;
 

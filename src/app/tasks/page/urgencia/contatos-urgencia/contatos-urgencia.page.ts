@@ -14,11 +14,8 @@ export class ContatosUrgenciaPage implements OnInit {
   ngOnInit() {
   }
 
-  navegar( page ){
-    
-    this.navCtrl.navigateForward( page );
-
-
+  proximo(nomeDaPagina: string) {
+    this.navCtrl.navigateForward(nomeDaPagina);
   }
 
 }

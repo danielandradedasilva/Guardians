@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="home"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Configurações</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-footer>
+        <ion-grid>
+            <ion-row>
+                <ion-col size="6">
+                    <ion-button (click)="logout()" color="danger" expand="block">Sair</ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-footer>
+</ion-content>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, MenuController } from '@ionic/angular';
 
 import { AuthService } from 'src/app/core/services/auth.service';
 import { AuthProvider } from 'src/app/core/services/auth.types';
@@ -25,6 +25,7 @@ export class LoginPage implements OnInit {
 
   constructor(private authService: AuthService,
               private navCtrl: NavController,
+              private menuController: MenuController,
               private route: ActivatedRoute,
               private fb: FormBuilder,
               private overlayService: OverlayService) { }
@@ -73,19 +74,20 @@ export class LoginPage implements OnInit {
         provider
       });
       /* metodo para navegar para pagiana menu-cadastro, se o usuário efetuar o login co sucesso*/
-      this.navCtrl.navigateForward(this.route.snapshot.queryParamMap.get('redirect') || '/menu-cadastro');
+      this.navCtrl.navigateForward(this.route.snapshot.queryParamMap.get('redirect') || '/home');
       /* fim */
     } catch (e) {
-      console.log('Erro: ', e);
       await this.overlayService.toast();
     } finally {
       loading.dismiss();
     }
   }
 
-    /* Envento do botão entrar, 'leva para outra página'
-  irPara(nomeDaPagina: string) {
-    this.navCtrl.navigateForward(nomeDaPagina);
-  }*/
+  ionViewDidEnter() {
+   this.menuController.enable(false);
+  }
 
+  ionViewWillLeave() {
+   this.menuController.enable(true);
+  }
 }

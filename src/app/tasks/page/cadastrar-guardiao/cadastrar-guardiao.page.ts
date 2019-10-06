@@ -1,56 +1,57 @@
-import { Crianca } from './../../../interface/crianca';
+import { Guardiao } from './../../../interface/guardiao';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController, LoadingController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Subscription } from 'rxjs';
-import { CriancaService } from 'src/app/service/crianca.service';
+import { GuardiaoService } from 'src/app/service/guardiao.service';
+
 
 @Component({
-  selector: 'app-cadastro-crianca',
-  templateUrl: './cadastro-crianca.page.html',
-  styleUrls: ['./cadastro-crianca.page.scss'],
+  selector: 'app-cadastrar-guardiao',
+  templateUrl: './cadastrar-guardiao.page.html',
+  styleUrls: ['./cadastrar-guardiao.page.scss'],
 })
-export class CadastroCriancaPage implements OnInit {
-  private criancaId: string = null;
-  public crianca: Crianca = {};
+export class CadastrarGuardiaoPage implements OnInit {
+  private guardiaoId: string = null;
+  public guardiao: Guardiao = {};
   private loading: any;
-  private criancaSubscription: Subscription;
+  private guardiaoSubscription: Subscription;
 
   constructor(
-    private criancaService: CriancaService,
+    private guardiaoService: GuardiaoService,
     private activatedRoute: ActivatedRoute,
     private navCtrl: NavController,
     private loadingCtrl: LoadingController,
     private authService: AuthService,
     private toastCtrl: ToastController
   ) {
-    this.criancaId = this.activatedRoute.snapshot.params['id'];
+    this.guardiaoId = this.activatedRoute.snapshot.params['id'];
 
-    if (this.criancaId) { this.loadCrianca(); }
+    if (this.guardiaoId) { this.loadGuardiao(); }
   }
 
   ngOnInit() { }
 
   // tslint:disable-next-line: use-life-cycle-interface
   ngOnDestroy() {
-    if (this.criancaSubscription) { this.criancaSubscription.unsubscribe(); }
+    if (this.guardiaoSubscription) { this.guardiaoSubscription.unsubscribe(); }
   }
 
-  loadCrianca() {
-    this.criancaSubscription = this.criancaService.getCrianca(this.criancaId).subscribe(data => {
-      this.crianca = data;
+  loadGuardiao() {
+    this.guardiaoSubscription = this.guardiaoService.getGuardiao(this.guardiaoId).subscribe(data => {
+      this.guardiao = data;
     });
   }
 
-  async saveCrianca() {
+  async saveGuardiao() {
     await this.presentLoading();
 
-    this.crianca.userId = this.authService.getAuth().currentUser.uid;
+    this.guardiao.userId = this.authService.getAuth().currentUser.uid;
 
-    if (this.criancaId) {
+    if (this.guardiaoId) {
       try {
-        await this.criancaService.updateCrianca(this.criancaId, this.crianca);
+        await this.guardiaoService.updateGuardiao(this.guardiaoId, this.guardiao);
         await this.loading.dismiss();
 
         this.navCtrl.navigateBack('/home');
@@ -59,10 +60,10 @@ export class CadastroCriancaPage implements OnInit {
         this.loading.dismiss();
       }
     } else {
-      this.crianca.createdAt = new Date().getTime();
+      this.guardiao.createdAt = new Date().getTime();
 
       try {
-        await this.criancaService.addCrianca(this.crianca);
+        await this.guardiaoService.addGuardiao(this.guardiao);
         await this.loading.dismiss();
 
         this.navCtrl.navigateBack('/home');

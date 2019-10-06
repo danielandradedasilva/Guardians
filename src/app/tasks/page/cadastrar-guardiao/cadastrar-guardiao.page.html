@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title>Cadastro do Guardião</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content text-center padding>
+
+    <h4 text-center>
+        Faça seu cadastro!
+    </h4>
+
+    <p>
+        Insira algumas informações:
+    </p>
+
+    <ion-card>
+        <ion-item>
+            <ion-label position="floating">Nome completo</ion-label>
+            <ion-input type="text" [(ngModel)]="guardiao.nome"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">RG</ion-label>
+            <ion-input type="number" [(ngModel)]="guardiao.rg"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">CPF</ion-label>
+            <ion-input type="number" [(ngModel)]="guardiao.cpf"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">E-mail</ion-label>
+            <ion-input type="email" [(ngModel)]="guardiao.email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Data de nascimento</ion-label>
+            <ion-datetime display-format="DD/MM/YYYY" min="1950" max="2020" done-text="Ok" cancel-text="Cancelar" type="date" [(ngModel)]="guardiao.dataDeNascimento"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Sexo</ion-label>
+            <ion-select cancelText="Cancelar" type="text" [(ngModel)]="guardiao.sexo">
+                <ion-select-option value="Feminino">Feminino</ion-select-option>
+                <ion-select-option value="Masculino">Masculino</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Estado civil</ion-label>
+            <ion-select cancelText="Cancelar" type="text" [(ngModel)]="guardiao.estadoCivil">
+                <ion-select-option value="casado">Casado</ion-select-option>
+                <ion-select-option value="solteiro">Solteiro</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Nacionalidade</ion-label>
+            <ion-select cancelText="Cancelar" type="text" [(ngModel)]="guardiao.nacionalidade">
+                <ion-select-option value="brasileiro">Brasileiro</ion-select-option>
+                <ion-select-option value="estrangeiro">Estrangeiro</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Trabalha?</ion-label>
+            <ion-select cancelText="Cancelar" type="text" [(ngModel)]="guardiao.trabalha">
+                <ion-select-option>Sim</ion-select-option>
+                <ion-select-option>Não</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Tipo de trabalho</ion-label>
+            <ion-select cancelText="Cancelar" type="text" [(ngModel)]="guardiao.tipoDeTrabalho">
+                <ion-select-option>Registrado (CLT)</ion-select-option>
+                <ion-select-option>Freelancer (Autônomo)</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Nome da empresa</ion-label>
+            <ion-input type="text" [(ngModel)]="guardiao.nomeDaEmpresa"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Endereço da empresa </ion-label>
+            <ion-input type="text" [(ngModel)]="guardiao.enderecoDaEmpresa"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Data da admissão</ion-label>
+            <ion-datetime display-format="DD/MM/YYYY" min="2000" max="2020" done-text="Ok" cancel-text="Cancelar" type="date" [(ngModel)]="guardiao.dataDeAdmissao"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Data da demissão</ion-label>
+            <ion-datetime display-format="DD/MM/YYYY" min="2000" max="2020" done-text="Ok" cancel-text="Cancelar" type="date" [(ngModel)]="guardiao.dataDaDemissao"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Renda</ion-label>
+            <ion-input type="number" [(ngModel)]="guardiao.renda"></ion-input>
+        </ion-item>
+    </ion-card>
+
+    <ion-button (click)="saveGuardiao()">Cadastrar Guardião</ion-button>
+
+</ion-content>

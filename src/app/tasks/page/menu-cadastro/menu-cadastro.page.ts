@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, AlertController } from '@ionic/angular';
+import { NavController, AlertController, MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-menu-cadastro',
@@ -19,7 +19,10 @@ export class MenuCadastroPage implements OnInit {
   async  alert() {
     const alertCadastro = await this.alertCtrl.create({
       header: 'Qual opção escolher?',
-      message: 'Se você tem a guarda da criança, escolha a opção Guardião. Se você paga a pensão, então escolha a opção G.Pagador.',
+      subHeader: '',
+      // tslint:disable-next-line: max-line-length
+      // tslint:disable-next-line: max-line-length
+      message: '*Se você tem a guarda da criança, escolha a opção Guardião.<br><br>*Se você paga a pensão, então escolha a opção G.Pagador.<br><br>*Após fazer seu cadastro,<br> clique em adicionar filho, para cadastrar a criança',
       buttons: ['Fechar']
     });
 

@@ -22,7 +22,7 @@ export class OverlayService {
 
     async loading(options?: LoadingOptions): Promise<HTMLIonLoadingElement> {
       const loading = await this.loadingCtrl.create({
-        message: 'Loading...',
+        message: 'Aguarde...',
         ...options
       });
       await loading.present();
@@ -33,7 +33,7 @@ export class OverlayService {
       const toast = await this.toastCtrl.create({
         position: 'bottom',
         duration: 3000,
-        message: ' Usuário ou senha incorreto! ',
+        message: ' Email ou senha incorreto! ',
         showCloseButton: true,
         closeButtonText: 'OK',
         ...options

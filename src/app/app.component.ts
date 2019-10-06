@@ -16,19 +16,19 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Configurações',
-      url: '',
-      icon: 'settings'
-    },
-    {
-      title: 'Sobre Nós',
-      url: '',
-      icon: 'contacts'
+      title: 'Menu Cadastro',
+      url: '/menu-cadastro',
+      icon: 'keypad'
     },
     {
       title: 'Urgencia',
       url: '/contatos-urgencia',
       icon: 'ios-call'
+    },
+    {
+      title: 'Configurações',
+      url: '/configuracoes',
+      icon: 'construct'
     },
   ];
 

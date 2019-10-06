@@ -1,56 +1,56 @@
-import { Crianca } from './../../../interface/crianca';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController, LoadingController, ToastController } from '@ionic/angular';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Subscription } from 'rxjs';
-import { CriancaService } from 'src/app/service/crianca.service';
+import { GenitorPagador } from 'src/app/interface/genitorPagador';
+import { GenitorPagadorService } from 'src/app/service/genitorPagador.service';
 
 @Component({
-  selector: 'app-cadastro-crianca',
-  templateUrl: './cadastro-crianca.page.html',
-  styleUrls: ['./cadastro-crianca.page.scss'],
+  selector: 'app-cadastrar-pagador',
+  templateUrl: './cadastrar-pagador.page.html',
+  styleUrls: ['./cadastrar-pagador.page.scss'],
 })
-export class CadastroCriancaPage implements OnInit {
-  private criancaId: string = null;
-  public crianca: Crianca = {};
+export class CadastrarPagadorPage implements OnInit {
+  private genitorPagadorId: string = null;
+  public GenitorPagador: GenitorPagador  = {};
   private loading: any;
-  private criancaSubscription: Subscription;
+  private genitorPagadorSubscription: Subscription;
 
   constructor(
-    private criancaService: CriancaService,
+    private genitorPagadorService: GenitorPagadorService,
     private activatedRoute: ActivatedRoute,
     private navCtrl: NavController,
     private loadingCtrl: LoadingController,
     private authService: AuthService,
     private toastCtrl: ToastController
   ) {
-    this.criancaId = this.activatedRoute.snapshot.params['id'];
+    this.genitorPagadorId = this.activatedRoute.snapshot.params['id'];
 
-    if (this.criancaId) { this.loadCrianca(); }
+    if (this.genitorPagadorId) { this.loadGuardiao(); }
   }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   // tslint:disable-next-line: use-life-cycle-interface
   ngOnDestroy() {
-    if (this.criancaSubscription) { this.criancaSubscription.unsubscribe(); }
+    if (this.genitorPagadorSubscription) { this.genitorPagadorSubscription.unsubscribe(); }
   }
 
-  loadCrianca() {
-    this.criancaSubscription = this.criancaService.getCrianca(this.criancaId).subscribe(data => {
-      this.crianca = data;
+  loadGuardiao() {
+    this.genitorPagadorSubscription = this.genitorPagadorService.getGenitorPagador(this.genitorPagadorId).subscribe(data => {
+      this.GenitorPagador = data;
     });
   }
 
-  async saveCrianca() {
+  async saveGenitorPagador() {
     await this.presentLoading();
 
-    this.crianca.userId = this.authService.getAuth().currentUser.uid;
+    this.GenitorPagador.userId = this.authService.getAuth().currentUser.uid;
 
-    if (this.criancaId) {
+    if (this.genitorPagadorId) {
       try {
-        await this.criancaService.updateCrianca(this.criancaId, this.crianca);
+        await this.genitorPagadorService.updateGenitorPagador(this.genitorPagadorId, this.GenitorPagador);
         await this.loading.dismiss();
 
         this.navCtrl.navigateBack('/home');
@@ -59,10 +59,10 @@ export class CadastroCriancaPage implements OnInit {
         this.loading.dismiss();
       }
     } else {
-      this.crianca.createdAt = new Date().getTime();
+      this.GenitorPagador.createdAt = new Date().getTime();
 
       try {
-        await this.criancaService.addCrianca(this.crianca);
+        await this.genitorPagadorService.addGenitorPagador(this.GenitorPagador);
         await this.loading.dismiss();
 
         this.navCtrl.navigateBack('/home');
@@ -83,3 +83,4 @@ export class CadastroCriancaPage implements OnInit {
     toast.present();
   }
 }
+

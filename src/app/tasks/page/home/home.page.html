@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <ion-header>
     <ion-toolbar color="primary">
+        <ion-buttons slot="end">
+            <ion-button (click)="logout()">Sair</ion-button>
+        </ion-buttons>
         <ion-title>
             Guardians
         </ion-title>
+
     </ion-toolbar>
 </ion-header>
 
@@ -17,7 +21,7 @@
             <ion-menu-button color="primary"></ion-menu-button>
 
             <!-- Botões home, financeiro e agenda -->
-            <ion-tab-button tab="home">
+            <ion-tab-button tab="home" (click)="proximo('home')">
                 <ion-icon name="Home" color="primary"></ion-icon>
                 <ion-label color="primary">Home</ion-label>
             </ion-tab-button>

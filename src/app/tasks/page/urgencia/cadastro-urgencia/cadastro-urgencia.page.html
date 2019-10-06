@@ -55,17 +55,17 @@
             <ion-menu-button color="primary"></ion-menu-button>
 
             <!-- Botões home, financeiro e agenda -->
-            <ion-tab-button tab="home">
+            <ion-tab-button tab="home" (click)="proximo('home')">
                 <ion-icon name="Home" color="primary"></ion-icon>
                 <ion-label color="primary">Home</ion-label>
             </ion-tab-button>
 
-            <ion-tab-button (click)="navegar('contatos-urgencia')">
+            <ion-tab-button (click)="proximo('contatos-urgencia')">
                 <ion-icon name="ios-contacts" color="primary"></ion-icon>
                 <ion-label color="primary">Contatos</ion-label>
             </ion-tab-button>
 
-            <ion-tab-button (click)="navegar('cadastro-urgencia')">
+            <ion-tab-button (click)="proximo('cadastro-urgencia')">
                 <ion-icon name="md-add-circle" color="primary"></ion-icon>
                 <ion-label color="primary">Add Urgencia</ion-label>
             </ion-tab-button>

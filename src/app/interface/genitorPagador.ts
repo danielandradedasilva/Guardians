@@ -1,0 +1,29 @@
+export interface GenitorPagador {
+rg?: string;
+nome?: string;
+sexo?: string;
+dataDeNascimento?: Date;
+cpf?: string;
+email?: string;
+trabalha?: string;
+tipoDeTrabalho?: string;
+nomeDaEmpresa?: string;
+enderecoDaEmpresa?: string;
+dataDeAdmissao?: Date;
+dataDaDemissao?: Date;
+estadoCivil?: string;
+renda?: number;
+naturalidade?: string;
+nacionalidade?: string;
+nomeDaCrianca?: string;
+nomeDaMaeCrianca?: string;
+nomeDaMaeDoGuardiao?: string;
+nomeDoPaiDaCrianca?: string;
+nomeDoPaiDoGuardiao?: string;
+escolaridade?: string;
+nomeDaEscola?: string;
+enderecoDaEscola?: string;
+horarioEscola?: number;
+userId?: string;
+createdAt?: number;
+}
