@@ -18,7 +18,7 @@ export class AppComponent {
     {
       title: 'Menu Cadastro',
       url: '/menu-cadastro',
-      icon: 'keypad'
+      icon: 'ios-person-add'
     },
     {
       title: 'Urgencia',
@@ -29,7 +29,7 @@ export class AppComponent {
       title: 'Configurações',
       url: '/configuracoes',
       icon: 'construct'
-    },
+    }
   ];
 
   constructor(
