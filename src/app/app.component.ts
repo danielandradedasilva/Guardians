@@ -38,6 +38,11 @@ export class AppComponent {
       icon: 'ios-call'
     },
     {
+     title:'Calendario',
+     url:'/calendario',
+     icon:'ios-calendar'
+    },
+    {
       title: 'Configurações',
       url: '/configuracoes',
       icon: 'ios-construct'

@@ -39,7 +39,9 @@ const routes: Routes = [
     loadChildren: './page/cadastrar-pagador/cadastrar-pagador.module#CadastrarPagadorPageModule'
   },
   { path: 'configuracoes',
-    loadChildren: './page/configuracoes/configuracoes.module#ConfiguracoesPageModule' }
+    loadChildren: './page/configuracoes/configuracoes.module#ConfiguracoesPageModule' },
+  { path: 'calendario', loadChildren: './page/calendario/calendario.module#CalendarioPageModule' }
+
 
 
 ];

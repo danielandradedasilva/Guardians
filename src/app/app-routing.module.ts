@@ -17,6 +17,7 @@ const routes: Routes = [
    loadChildren: './tasks/page/urgencia/contatos-urgencia/contatos-urgencia.module#ContatosUrgenciaPageModule' },
   { path: 'cadastrar-guardiao', loadChildren: './tasks/page/cadastrar-guardiao/cadastrar-guardiao.module#CadastrarGuardiaoPageModule' },
   { path: 'cadastrar-pagador', loadChildren: './tasks/page/cadastrar-pagador/cadastrar-pagador.module#CadastrarPagadorPageModule' },
+  { path: 'calendario', loadChildren: './page/calendario/calendario.module#CalendarioPageModule' },
   { path: 'configuracoes', loadChildren: './tasks/page/configuracoes/configuracoes.module#ConfiguracoesPageModule' }
 ];
 
