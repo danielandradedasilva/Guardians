@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <ion-header>
     <ion-toolbar color="primary">
-        <ion-buttons slot="start">
-            <ion-back-button></ion-back-button>
-        </ion-buttons>
-        <ion-title text-center padding>Contatos Urgências</ion-title>
+        <ion-title>Contatos Urgências</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -17,23 +14,15 @@
 
         <ion-tab-bar slot="bottom">
 
-            <!-- Botão do Menu-->
-            <ion-menu-button color="primary"></ion-menu-button>
-
-            <!-- Botões home, financeiro e agenda -->
-            <ion-tab-button tab="home" (click)="proximo('home')">
-                <ion-icon name="Home" color="primary"></ion-icon>
+            <!-- Botões home -->
+            <ion-tab-button (click)="proximo('home')">
+                <ion-icon name="ios-home" color="primary"></ion-icon>
                 <ion-label color="primary">Home</ion-label>
             </ion-tab-button>
 
-            <ion-tab-button (click)="proximo('contatos-urgencia')">
-                <ion-icon name="ios-contacts" color="primary"></ion-icon>
-                <ion-label color="primary">Contatos</ion-label>
-            </ion-tab-button>
-
             <ion-tab-button (click)="proximo('cadastro-urgencia')">
-                <ion-icon name="md-add-circle" color="primary"></ion-icon>
-                <ion-label color="primary">Add Urgencia</ion-label>
+                <ion-icon name="ios-add-circle" color="primary"></ion-icon>
+                <ion-label color="primary">Add Urgência</ion-label>
             </ion-tab-button>
 
         </ion-tab-bar>

@@ -1,5 +1,7 @@
+import { AuthService } from './core/services/auth.service';
+import { OverlayService } from './core/services/overlay.service';
 import { Component } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Platform, NavController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -13,11 +15,21 @@ export class AppComponent {
     {
       title: 'Home',
       url: '/home',
-      icon: 'home'
+      icon: 'ios-home'
     },
     {
-      title: 'Menu Cadastro',
-      url: '/menu-cadastro',
+      title: 'Cadastro Guardião',
+      url: '/cadastrar-guardiao',
+      icon: 'ios-person'
+    },
+    {
+      title: 'Cadastro Genitor Pagador',
+      url: '/cadastrar-pagador',
+      icon: 'ios-person'
+    },
+    {
+      title: 'Adicionar Filho',
+      url: '/cadastro-crianca',
       icon: 'ios-person-add'
     },
     {
@@ -28,14 +40,17 @@ export class AppComponent {
     {
       title: 'Configurações',
       url: '/configuracoes',
-      icon: 'construct'
+      icon: 'ios-construct'
     }
   ];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private overlayService: OverlayService,
+    private authService: AuthService,
+    private navCtrl: NavController
   ) {
     this.initializeApp();
   }
@@ -44,6 +59,22 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+    });
+  }
+
+  async logout(): Promise<void> {
+    await this.overlayService.alert({
+      message: 'Você deseja realmente sair?',
+      buttons: [
+        {
+          text: 'Sim',
+          handler: async () => {
+            await this.authService.logout();
+            this.navCtrl.navigateRoot('/login');
+          }
+        },
+        'Não'
+      ]
     });
   }
 }
