@@ -38,9 +38,9 @@ export class AppComponent {
       icon: 'ios-call'
     },
     {
-     title:'Calendario',
-     url:'/calendario',
-     icon:'ios-calendar'
+     title: 'Agenda/Calendário',
+     url: '/calendario',
+     icon: 'ios-calendar'
     },
     {
       title: 'Configurações',
