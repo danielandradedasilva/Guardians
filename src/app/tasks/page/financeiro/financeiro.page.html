@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <ion-header>
-    <ion-toolbar color="primary">
-        <ion-title>Financeiro</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
+    <ion-title> 
+      Financeiro
+    </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-    <!-- Botões  -->
-    <ion-tabs>
+
+      <!-- <ion-tabs>
         <ion-tab-bar slot="bottom">
 
-            <!-- Botão do Menu-->
             <ion-menu-button color="primary"></ion-menu-button>
 
-            <!-- Botões home, financeiro e agenda -->
+            
             <ion-tab-button (click)="proximo('home')">
                 <ion-icon name="ios-home" color="primary"></ion-icon>
                 <ion-label color="primary">Home</ion-label>
@@ -24,13 +28,45 @@
                 <ion-label color="primary">Financeiro</ion-label>
             </ion-tab-button>
 
-            <ion-tab-button (click)="proximo('calendario')">
+            <ion-tab-button (click)="proximo('agenda')">
                 <ion-icon name="ios-list-box" color="primary"></ion-icon>
                 <ion-label color="primary">Agenda</ion-label>
             </ion-tab-button>
 
-
         </ion-tab-bar>
-    </ion-tabs>
+    </ion-tabs> -->
+    
+    <ion-item>
+        <ion-label position="floating">Valor</ion-label>
+        <ion-input type="number" placeholder="Por favor, insira um valor gasto" [(ngModel)]="Transaction.value" ></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="floating"> Mês </ion-label>
+      <ion-select [(ngModel)]="Transaction.month">
+        <ion-select-option [value]="month.value"  *ngFor="let month of Months"> {{ month.name }} </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-textarea placeholder="Descrição de gastos...."  [(ngModel)]="Transaction.note" ></ion-textarea>
+    </ion-item>
+  
+    <ion-button expand="block"  (click)="addTransaction()"> Adicionar a Transação </ion-button>
+  
+      <ion-card>
+        <ion-card-header>Grafico</ion-card-header>
+        <ion-card-content>
+          <canvas #barsCanvas></canvas>
+        </ion-card-content>
+      </ion-card>
+
+    <ion-card *ngFor="let chart of chartData">
+        <ion-card-header>
+          <ion-card-title>Gastos</ion-card-title>
+          <ion-card-subtitle>Valor Total:  {{chart.value}}</ion-card-subtitle>
+          <ion-card-content>{{ chart.note }}</ion-card-content>
+        </ion-card-header>
+    </ion-card>  
 
 </ion-content>

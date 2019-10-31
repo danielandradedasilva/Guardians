@@ -20,3 +20,41 @@
 * Assim quando forem criar uma page, usem este comando:
   
 * "ionic g page tasks/page/nomeDaPágina".
+
+<-------------------------------------------------------------------------------------------->
+
+31/10/19 ---- /*Atualização*/ e novidades 
+
+Novidades  -------------------------------->
+
+Grafico no financeiro,
+Criação de cards para visualização rapida,
+Mudança de dataBase,
+Criação de contatos de urgencia,
+Criação de lista de contatos,
+Verificação de campos obrigatorio ao cadastrar guardião, g-pagador e criança,
+Um Card padrão na home,
+Pagina de "Configurações" agora possui rota para mudança de valores dos cadastros (guardião, g-pagado e criança),
+
+Adição de biblioteca "Chart.js"
+
+<----------------------------------------------------------------------------------------------->
+
+Bugs --------------------------> 
+
+Contatos que foram apagados no banco ainda mantem na aba contatos,
+Indentificação de "Usuario" e mostrar dados referente ao mesmo,
+Rotas não está seguras, possui muitas brexas,
+
+
+<----------------------------------------------------------------------------------------------->
+
+
+Proximas Atualizações ---------------------------------->
+
+Financeiro não possui transformação de moeda,
+Fazer uma função que filtre valores e crie cards na home
+e Correção dos bugs da semana /*31/10/19*/;
+
+
+<----------------------------------------------------------------------------------------------->

@@ -5,9 +5,13 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content text-center padding>
+<ion-content class="main">
 
-
+        <ion-card *ngFor="let contact of values">
+              <ion-card-title> <ion-icon name="contact"></ion-icon> {{contact.indexType}} </ion-card-title>
+              <ion-card-subtitle>Telefone Residencial: {{contact.telefoneRecidencial}} </ion-card-subtitle>
+              <ion-card-subtitle>Telefone Celular: {{contact.telCelular}}</ion-card-subtitle>
+        </ion-card>
 
     <!-- Botões  -->
     <ion-tabs>

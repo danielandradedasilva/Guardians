@@ -17,7 +17,7 @@ export class AppComponent {
       url: '/home',
       icon: 'ios-home'
     },
-    {
+    /*{
       title: 'Cadastro Guardião',
       url: '/cadastrar-guardiao',
       icon: 'ios-person'
@@ -31,7 +31,7 @@ export class AppComponent {
       title: 'Adicionar Filho',
       url: '/cadastro-crianca',
       icon: 'ios-person-add'
-    },
+    },*/
     {
       title: 'Urgencia',
       url: '/contatos-urgencia',
