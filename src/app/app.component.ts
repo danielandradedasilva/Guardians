@@ -33,7 +33,7 @@ export class AppComponent {
       icon: 'ios-person-add'
     },*/
     {
-      title: 'Urgencia',
+      title: 'Urgência',
       url: '/contatos-urgencia',
       icon: 'ios-call'
     },

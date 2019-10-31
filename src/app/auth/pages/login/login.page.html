@@ -20,7 +20,7 @@
                     <!-- Mensagem de campo obrigatório -->
                     <ion-note slot="end" color="danger" *ngIf="name.dirty && name.hasError('required')">Campo Obrigatório</ion-note>
                     <!-- Mensagem de senha inválido -->
-                    <ion-note slot="end" color="danger" *ngIf="name.dirty && name.hasError('minlength')">Nome completo</ion-note>
+                    <ion-note slot="end" color="danger" *ngIf="name.dirty && name.hasError('minlength')">Nome</ion-note>
                 </ion-item>
             </ng-container>
 
@@ -48,10 +48,11 @@
 
         <ion-button expand="block" fill="clear" (click)="changeAuthAction()" id="btnNovaConta">{{ configs.actionChange }}</ion-button>
 
+        <!--
         <ion-button expand="block" (click)="onSubmit(authProviders.Facebook)">
             <ion-icon name="logo-facebook" slot="start"></ion-icon>
             Entrar com facebook
-        </ion-button>
+        </ion-button> -->
 
     </ion-card>
 
