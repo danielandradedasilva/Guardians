@@ -1,54 +1,40 @@
 <!DOCTYPE html>
 <ion-header>
     <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="home"></ion-back-button>
+        </ion-buttons>
         <ion-title>Cadastrar Urgências</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content text-center padding>
-    <p>Selecione uma Urgência</p>
-    <ion-card>
-        <!-- Adicionar mais tipos de Urgências para ser selecionado -->
-        <ion-item>
-            <ion-select placeholder="Selecione...">
-                <ion-select-option value="A">Atraso</ion-select-option>
-                <ion-select-option value="M">Medicinal</ion-select-option>
-                <ion-select-option value="O">Odontológico</ion-select-option>
-                <ion-select-option value="R">Remedios</ion-select-option>
-                <ion-select-option value="ou">Outros</ion-select-option>
-            </ion-select>
-        </ion-item>
-        <ion-item>
-            <ion-label position="floating"></ion-label>
-            <ion-input type="tel" placeholder="Telefone caso de emergência ex:(192, 191, 190...)"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label position="floating"></ion-label>
-            <ion-input type="tel" placeholder="Telefone Em caso de convênios"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label position="floating"></ion-label>
-            <ion-input type="tel" placeholder="Telefone de Parente para caso de emergência "></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label position="floating"></ion-label>
-            <ion-input type="tel" placeholder="Telefone de Parente para caso de emergência "></ion-input>
-        </ion-item>
+<ion-content padding>
+    <!-- Adicionar mais tipos de Urgências para ser selecionado -->
+    <ion-item>
+      <ion-label position="floating"> Selecione Um tipo de urgência </ion-label>
+      <ion-select [(ngModel)]="values.indexType">
+        <ion-select-option [value]="type.value"  *ngFor="let type of typeUrgency"> {{ type.name }} </ion-select-option>
+      </ion-select>
+    </ion-item>
 
-        <!-- O botão de enviar ele envia outro tipo de Urgência para o cadastro dele -->
-        <ion-button expand="block">
-            <ion-icon slot="end" name="arrow-forward"></ion-icon>
-            Enviar
-        </ion-button>
+    <ion-item>
+        <ion-label position="floating">Telefone Residencial</ion-label>
+        <ion-input type="text"  [(ngModel)]="values.telR"></ion-input>
+    </ion-item>
 
-    </ion-card>
-
-    <!-- Botões  -->
+    <ion-item>
+        <ion-label position="floating">Telefone Celular</ion-label>
+        <ion-input type="text" [(ngModel)]="values.telC"></ion-input>
+    </ion-item><br>
+    
+    <ion-button expand="block" (click)="addUrgency()">Adicionar o contato</ion-button>
+    
+    <!-- Botões  
     <ion-tabs>
 
         <ion-tab-bar slot="bottom">
 
-            <!-- Botões home -->
+            Botões home 
             <ion-tab-button (click)="proximo('home')">
                 <ion-icon name="ios-home" color="primary"></ion-icon>
                 <ion-label color="primary">Home</ion-label>
@@ -60,5 +46,7 @@
             </ion-tab-button>
 
         </ion-tab-bar>
-    </ion-tabs>
+
+    </ion-tabs> --> 
+
 </ion-content>

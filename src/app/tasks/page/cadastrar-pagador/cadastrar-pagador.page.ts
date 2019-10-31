@@ -43,33 +43,113 @@ export class CadastrarPagadorPage implements OnInit {
     });
   }
 
-  async saveGenitorPagador() {
-    await this.presentLoading();
+  async saveGenitorPagador() 
+  {
+    if(this.CheckOut())
+    {
+      await this.presentLoading();
 
-    this.GenitorPagador.userId = this.authService.getAuth().currentUser.uid;
+      this.GenitorPagador.userId = this.authService.getAuth().currentUser.uid;
 
-    if (this.genitorPagadorId) {
-      try {
-        await this.genitorPagadorService.updateGenitorPagador(this.genitorPagadorId, this.GenitorPagador);
-        await this.loading.dismiss();
+      if (this.genitorPagadorId) 
+      {
+        try 
+        {
+          await this.genitorPagadorService.updateGenitorPagador(this.genitorPagadorId, this.GenitorPagador);
+          await this.loading.dismiss();
 
-        this.navCtrl.navigateBack('/home');
-      } catch (error) {
-        this.presentToast('Erro ao tentar salvar');
-        this.loading.dismiss();
+          this.navCtrl.navigateBack('/home');
+        }
+        catch (error) 
+        {
+          this.presentToast('Erro ao tentar salvar');
+          this.loading.dismiss();
+        }
+      } 
+      else
+      {
+        this.GenitorPagador.createdAt = new Date().getTime();
+
+        try 
+        {
+          await this.genitorPagadorService.addGenitorPagador(this.GenitorPagador);
+          await this.loading.dismiss();
+
+          this.navCtrl.navigateBack('/home');
+        }
+        catch (error) 
+        {
+          this.presentToast('Erro ao tentar salvar');
+          this.loading.dismiss();
+        }
+
       }
-    } else {
-      this.GenitorPagador.createdAt = new Date().getTime();
 
-      try {
-        await this.genitorPagadorService.addGenitorPagador(this.GenitorPagador);
-        await this.loading.dismiss();
+    }
+  }
 
-        this.navCtrl.navigateBack('/home');
-      } catch (error) {
-        this.presentToast('Erro ao tentar salvar');
-        this.loading.dismiss();
-      }
+  async AlertErrors(errors)
+  {
+    let toast = await this.toastCtrl.create(
+    {
+      message: errors[0],
+      duration: 5000
+    });
+    toast.present();
+  }
+
+  CheckOut()
+  {
+    let errors = [];
+    
+    if(this.GenitorPagador.nome == undefined)
+    {
+      errors.push("Por favor, insira um nome (Campo Obrigatorio)");
+    }
+
+    if(this.GenitorPagador.cpf == undefined)
+    {
+      errors.push("Por favor, insira o seu CPF (Campo Obrigatorio)")
+    }
+
+    if(this.GenitorPagador.email == undefined)
+    {
+      errors.push("Por favor, insira o seu E-mail (Campo Obrigatorio)")
+    }
+
+    if(this.GenitorPagador.dataDeNascimento == undefined)
+    {
+      errors.push("Por favor, insira sua data de nascimento (Campo Obrigatorio)")
+    }
+
+    if(this.GenitorPagador.dataDeNascimento == undefined)
+    {
+      errors.push("Por favor, insira sua data de nascimento (Campo Obrigatorio)")
+    }
+
+    if(this.GenitorPagador.trabalha == undefined)
+    {
+      errors.push("Por favor, insira se o senhor(a) trabalha (Campo Obrigatorio)")
+    }
+
+    if(this.GenitorPagador.renda == undefined)
+    {
+      errors.push("Por favor, insira sua renda mensal (Campo Obrigatorio)")
+    }
+
+    if(this.GenitorPagador.email == undefined)
+    {
+      errors.push("Por favor, insira o seu E-mail (Campo Obrigatorio)")
+    }
+    
+    if(errors.length > 0)
+    {
+      this.AlertErrors(errors);
+      return false
+    }
+    else
+    {
+      return true
     }
   }
 
