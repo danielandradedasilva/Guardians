@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
     action: 'Entrar',
     actionChange: 'Criar uma conta !'
   };
-  private nameControl = new FormControl('', [Validators.required, Validators.minLength(6)]);
+  private nameControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
 
   constructor(private authService: AuthService,
               private navCtrl: NavController,

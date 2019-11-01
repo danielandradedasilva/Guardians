@@ -45,18 +45,14 @@ export class CadastrarGuardiaoPage implements OnInit {
     });
   }
 
-  async saveGuardiao()
-  {
-    
-    if(this.CheckOut())
-    {
+  async saveGuardiao() {
+
+    if (this.CheckOut()) {
       await this.presentLoading();
       this.guardiao.userId = this.authService.getAuth().currentUser.uid;
 
-      if (this.guardiaoId) 
-      {
-        try 
-        {
+      if (this.guardiaoId) {
+        try {
           await this.guardiaoService.updateGuardiao(this.guardiaoId, this.guardiao);
           await this.loading.dismiss();
 
@@ -90,20 +86,17 @@ export class CadastrarGuardiaoPage implements OnInit {
     }
   }
 
-  async presentLoading() 
-  {
+  async presentLoading() {
     this.loading = await this.loadingCtrl.create({ message: 'Aguarde...' });
     return this.loading.present();
   }
 
-  async presentToast(message: string) 
-  {
+  async presentToast(message: string) {
     const toast = await this.toastCtrl.create({ message, duration: 2000 });
     toast.present();
   }
 
-  async AlertErrors(errors)
-  {  
+  async AlertErrors(errors) {
     let toast = await this.toastCtrl.create(
     {
       message: errors[0],
@@ -112,57 +105,52 @@ export class CadastrarGuardiaoPage implements OnInit {
     toast.present();
   }
 
-  CheckOut()
-  {
+  CheckOut() {
     let errors = [];
-    
-    if(this.guardiao.nome == undefined)
-    {
-      errors.push("Por favor, insira um nome (Campo Obrigatorio)");
+    // tslint:disable-next-line: triple-equals
+    if (this.guardiao.nome == undefined){
+      errors.push('Por favor, insira um nome (Campo Obrigatorio)');
     }
 
-    if(this.guardiao.cpf == undefined)
-    {
-      errors.push("Por favor, insira o seu CPF (Campo Obrigatorio)")
+    // tslint:disable-next-line: triple-equals
+    if (this.guardiao.cpf == undefined) {
+      errors.push('Por favor, insira o seu CPF (Campo Obrigatorio)');
     }
 
-    if(this.guardiao.email == undefined)
-    {
-      errors.push("Por favor, insira o seu E-mail (Campo Obrigatorio)")
+    // tslint:disable-next-line: triple-equals
+    if (this.guardiao.email == undefined) {
+      errors.push('Por favor, insira o seu E-mail (Campo Obrigatorio)');
     }
 
-    if(this.guardiao.dataDeNascimento == undefined)
-    {
-      errors.push("Por favor, insira sua data de nascimento (Campo Obrigatorio)")
+    // tslint:disable-next-line: triple-equals
+    if (this.guardiao.dataDeNascimento == undefined) {
+      errors.push('Por favor, insira sua data de nascimento (Campo Obrigatorio)');
     }
 
-    if(this.guardiao.dataDeNascimento == undefined)
-    {
-      errors.push("Por favor, insira sua data de nascimento (Campo Obrigatorio)")
+    // tslint:disable-next-line: triple-equals
+    if (this.guardiao.dataDeNascimento == undefined) {
+      errors.push('Por favor, insira sua data de nascimento (Campo Obrigatorio)');
     }
 
-    if(this.guardiao.trabalha == undefined)
-    {
-      errors.push("Por favor, insira se o senhor(a) trabalha (Campo Obrigatorio)")
+    // tslint:disable-next-line: triple-equals
+    if (this.guardiao.trabalha == undefined) {
+      errors.push('Por favor, insira se o senhor(a) trabalha (Campo Obrigatorio)');
     }
 
-    if(this.guardiao.renda == undefined)
-    {
-      errors.push("Por favor, insira sua renda mensal (Campo Obrigatorio)")
+    // tslint:disable-next-line: triple-equals
+    if (this.guardiao.renda == undefined) {
+      errors.push('Por favor, insira sua renda mensal (Campo Obrigatorio)');
     }
 
-    if(this.guardiao.email == undefined)
-    {
-      errors.push("Por favor, insira o seu E-mail (Campo Obrigatorio)")
+    // tslint:disable-next-line: triple-equals
+    if (this.guardiao.email == undefined) {
+      errors.push('Por favor, insira o seu E-mail (Campo Obrigatorio)');
     }
-    
-    if(errors.length > 0)
-    {
+
+    if (errors.length > 0) {
       this.AlertErrors(errors);
       return false
-    }
-    else
-    {
+    } else {
       return true
     }
   }
