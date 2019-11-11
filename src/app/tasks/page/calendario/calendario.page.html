@@ -29,10 +29,10 @@
         <ion-card-content *ngIf="!collapseCard">
 
             <ion-item>
-                <ion-input type="text" placeholder="Nome do evento" [(ngModel)]="event.title" [(ngModel)]="agenda.nomeDoEvento"></ion-input>
+                <ion-input clearInput type="text" placeholder="Nome do evento" [(ngModel)]="event.title" [(ngModel)]="agenda.nomeDoEvento"></ion-input>
             </ion-item>
             <ion-item>
-                <ion-input type="text" placeholder="Descrição" [(ngModel)]="event.desc" [(ngModel)]="agenda.descricao"></ion-input>
+                <ion-input clearInput type="text" placeholder="Descrição" [(ngModel)]="event.desc" [(ngModel)]="agenda.descricao"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label>Início</ion-label>

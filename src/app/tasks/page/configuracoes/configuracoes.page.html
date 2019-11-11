@@ -9,7 +9,9 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-button href="/cadastro-crianca"  expand="block" >Cadastro Criança</ion-button>
-    <ion-button href="/cadastrar-guardiao"  expand="block" >Cadastro Guardiao</ion-button>
-    <ion-button href="/cadastrar-pagador"  expand="block">Cadastro Pagador</ion-button>
+
+    <ion-button padding expand="block" (click)="irPara('cadastrar-guardiao')">Cadastro Guardiao</ion-button>
+    <ion-button padding expand="block" (click)="irPara('cadastrar-pagador')">Cadastro Pagador</ion-button>
+    <ion-button padding expand="block" (click)="irPara('cadastro-crianca')">Cadastro Criança</ion-button>
+
 </ion-content>

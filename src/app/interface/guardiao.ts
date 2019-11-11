@@ -1,6 +1,7 @@
 export interface Guardiao {
 rg?: string;
 nome?: string;
+tel?: string;
 sexo?: string;
 dataDeNascimento?: Date;
 cpf?: string;

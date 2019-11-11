@@ -24,20 +24,17 @@
     <ion-card>
 
         <ion-item>
-            <ion-label position="floating">Nome Completo</ion-label>
-            <ion-input type="text" [(ngModel)]="crianca.nome"></ion-input>
+            <ion-label position="floating">Nome completo</ion-label>
+            <ion-input clearInput type="text" [(ngModel)]="crianca.nome"></ion-input>
         </ion-item>
-
         <ion-item>
             <ion-label position="floating">RG</ion-label>
-            <ion-input type="number" [(ngModel)]="crianca.rg"></ion-input>
+            <ion-input placeholder="Ex:123456789" clearInput type="number" [(ngModel)]="crianca.rg"></ion-input>
         </ion-item>
-
         <ion-item>
             <ion-label position="floating">CPF</ion-label>
-            <ion-input type="number" [(ngModel)]="crianca.cpf"></ion-input>
+            <ion-input placeholder="Ex:123456789" clearInput type="number" [(ngModel)]="crianca.cpf"></ion-input>
         </ion-item>
-
         <ion-item>
             <ion-label class="ion-margin-top" position="floating">Data de nascimento</ion-label>
             <ion-datetime display-format="DD/MM/YYYY" min="1950" max="2020" done-text="Ok" cancel-text="Cancelar" type="number" [(ngModel)]="crianca.dataDeNascimento"></ion-datetime>
@@ -53,38 +50,38 @@
 
         <ion-item>
             <ion-label position="floating">Email</ion-label>
-            <ion-input type="text" [(ngModel)]="crianca.email"></ion-input>
+            <ion-input clearInput type="text" [(ngModel)]="crianca.email"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label position="floating">Passeio</ion-label>
-            <ion-input type="text" [(ngModel)]="crianca.passeio"></ion-input>
+            <ion-input clearInput type="text" [(ngModel)]="crianca.passeio"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label position="floating">Lugares que gosta</ion-label>
-            <ion-input type="text" [(ngModel)]="crianca.lugaresQueGosta"></ion-input>
+            <ion-input clearInput type="text" [(ngModel)]="crianca.lugaresQueGosta"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label position="floating">Alergias</ion-label>
-            <ion-input type="text" [(ngModel)]="crianca.alergias"></ion-input>
+            <ion-input clearInput type="text" [(ngModel)]="crianca.alergias"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label position="floating">Remédios</ion-label>
-            <ion-input type="text" [(ngModel)]="crianca.remedios"></ion-input>
+            <ion-input clearInput type="text" [(ngModel)]="crianca.remedios"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label position="floating">Restrição alimentar</ion-label>
-            <ion-input type="text" [(ngModel)]="crianca.restricaoAlimentar"></ion-input>
+            <ion-input clearInput type="text" [(ngModel)]="crianca.restricaoAlimentar"></ion-input>
         </ion-item>
 
     </ion-card>
 
     <ion-button (click)="saveCrianca()">
-        Cadastrar filho
+        Cadastrar Criança
     </ion-button>
 
 </ion-content>

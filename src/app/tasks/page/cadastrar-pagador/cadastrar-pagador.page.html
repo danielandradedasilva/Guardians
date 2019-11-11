@@ -21,19 +21,23 @@
     <ion-card>
         <ion-item>
             <ion-label position="floating">Nome completo</ion-label>
-            <ion-input type="text" [(ngModel)]="GenitorPagador.nome"></ion-input>
+            <ion-input clearInput type="text" [(ngModel)]="GenitorPagador.nome"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label position="floating">RG</ion-label>
-            <ion-input type="number" [(ngModel)]="GenitorPagador.rg"></ion-input>
+            <ion-input placeholder="Ex:123456789" clearInput type="number" [(ngModel)]="GenitorPagador.rg"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label position="floating">CPF</ion-label>
-            <ion-input type="number" [(ngModel)]="GenitorPagador.cpf"></ion-input>
+            <ion-input placeholder="Ex:123456789" clearInput type="number" [(ngModel)]="GenitorPagador.cpf"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Telefone</ion-label>
+            <ion-input clearInput type="number" [(ngModel)]="GenitorPagador.tel"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label position="floating">E-mail</ion-label>
-            <ion-input type="email" [(ngModel)]="GenitorPagador.email"></ion-input>
+            <ion-input clearInput type="email" [(ngModel)]="GenitorPagador.email"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label position="floating">Data de nascimento</ion-label>
@@ -76,11 +80,11 @@
         </ion-item>
         <ion-item>
             <ion-label position="floating">Nome da empresa</ion-label>
-            <ion-input type="text" [(ngModel)]="GenitorPagador.nomeDaEmpresa"></ion-input>
+            <ion-input clearInput type="text" [(ngModel)]="GenitorPagador.nomeDaEmpresa"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label position="floating">Endereço da empresa </ion-label>
-            <ion-input type="text" [(ngModel)]="GenitorPagador.enderecoDaEmpresa"></ion-input>
+            <ion-input clearInput type="text" [(ngModel)]="GenitorPagador.enderecoDaEmpresa"></ion-input>
         </ion-item>
         <ion-item>
             <ion-label position="floating">Data da admissão</ion-label>
@@ -92,10 +96,9 @@
         </ion-item>
         <ion-item>
             <ion-label position="floating">Renda</ion-label>
-            <ion-input type="number" [(ngModel)]="GenitorPagador.renda"></ion-input>
+            <ion-input clearInput type="number" [(ngModel)]="GenitorPagador.renda"></ion-input>
         </ion-item>
     </ion-card>
-
     <ion-button (click)="saveGenitorPagador()">Cadastrar G.Pagador</ion-button>
 
 </ion-content>

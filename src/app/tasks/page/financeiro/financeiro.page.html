@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-        <ion-back-button defaultHref="home"></ion-back-button>
-    </ion-buttons>
-    <ion-title> 
-      Financeiro
-    </ion-title>
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="home"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            Financeiro
+        </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
-      <!-- <ion-tabs>
+    <!-- <ion-tabs>
         <ion-tab-bar slot="bottom">
 
             <ion-menu-button color="primary"></ion-menu-button>
@@ -35,38 +35,38 @@
 
         </ion-tab-bar>
     </ion-tabs> -->
-    
+
     <ion-item>
         <ion-label position="floating">Valor</ion-label>
-        <ion-input type="number" placeholder="Por favor, insira um valor gasto" [(ngModel)]="Transaction.value" ></ion-input>
-    </ion-item>
-  
-    <ion-item>
-      <ion-label position="floating"> Mês </ion-label>
-      <ion-select [(ngModel)]="Transaction.month">
-        <ion-select-option [value]="month.value"  *ngFor="let month of Months"> {{ month.name }} </ion-select-option>
-      </ion-select>
+        <ion-input type="number" placeholder="Por favor, insira um valor gasto" [(ngModel)]="Transaction.value"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-textarea placeholder="Descrição de gastos...."  [(ngModel)]="Transaction.note" ></ion-textarea>
+        <ion-label position="floating"> Mês </ion-label>
+        <ion-select cancelText="Cancelar" [(ngModel)]="Transaction.month">
+            <ion-select-option [value]="month.value" *ngFor="let month of Months"> {{ month.name }} </ion-select-option>
+        </ion-select>
     </ion-item>
-  
-    <ion-button expand="block"  (click)="addTransaction()"> Adicionar a Transação </ion-button>
-  
-      <ion-card>
+
+    <ion-item>
+        <ion-textarea placeholder="Descrição de gastos...." [(ngModel)]="Transaction.note"></ion-textarea>
+    </ion-item>
+
+    <ion-button expand="block" (click)="addTransaction()"> Adicionar a Transação </ion-button>
+
+    <ion-card>
         <ion-card-header>Grafico</ion-card-header>
         <ion-card-content>
-          <canvas #barsCanvas></canvas>
+            <canvas #barsCanvas></canvas>
         </ion-card-content>
-      </ion-card>
+    </ion-card>
 
     <ion-card *ngFor="let chart of chartData">
         <ion-card-header>
-          <ion-card-title>Gastos</ion-card-title>
-          <ion-card-subtitle>Valor Total:  {{chart.value}}</ion-card-subtitle>
-          <ion-card-content>{{ chart.note }}</ion-card-content>
+            <ion-card-title>Gastos</ion-card-title>
+            <ion-card-subtitle>Valor Total: {{chart.value}}</ion-card-subtitle>
+            <ion-card-content>{{ chart.note }}</ion-card-content>
         </ion-card-header>
-    </ion-card>  
+    </ion-card>
 
 </ion-content>
