@@ -2,7 +2,8 @@ import { OverlayService } from 'src/app/core/services/overlay.service';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Component } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { async } from 'q';
+import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -11,10 +12,36 @@ import { async } from 'q';
 })
 export class HomePage {
 
+  listAngulaFire: AngularFireList<any>; 
+  data: Observable<any[]>;
+  cardsValues = false;
+
   constructor(
     private authService: AuthService,
     private navCtrl: NavController,
-    private overlayService: OverlayService) {}
+    private overlayService: OverlayService,
+    private firebaseDB: AngularFireDatabase
+  ) { }
+
+  ngOnInit()
+  {
+    this.GetValuesCard();
+  }
+
+  GetValuesCard()
+  {
+    this.listAngulaFire = this.firebaseDB.list('/valuesCardFeed', values => values.orderByChild('description'));
+    this.listAngulaFire.valueChanges().subscribe(resultValue =>
+    {
+      this.GiveValuesForCard(resultValue);
+    });
+  }
+
+  GiveValuesForCard(data)
+  {
+    this.cardsValues = data;
+    console.log('CardsValues:', this.cardsValues);
+  }
 
   async logout(): Promise<void> {
     await this.overlayService.alert({

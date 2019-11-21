@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ToastController } from '@ionic/angular';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 
 @Component({
@@ -12,7 +13,6 @@ import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
 })
 export class CadastroUrgenciaPage implements OnInit 
 {
-
   listAngularFire: AngularFireList<any>;
 
   typeUrgency = 
@@ -31,29 +31,47 @@ export class CadastroUrgenciaPage implements OnInit
     telC: ""
   }
 
-  constructor(private navCtrl: NavController, private firebaseDB: AngularFireDatabase , private toastCtr: ToastController) { }
+  constructor(
+    private navCtrl: NavController, 
+    private firebaseDB: AngularFireDatabase, 
+    private toastCtr: ToastController,
+    private angularFireAuth: AngularFireAuth
+  ) { }
 
   ngOnInit()
   {
   }
 
 
-  addUrgency()
+  async addUrgency()
   {
+    let user = this.angularFireAuth;
     this.listAngularFire = this.firebaseDB.list('/contatoUrgencias');
 
-    if(this.checkOut())
+    if(user.auth.currentUser == null)
     {
-      this.listAngularFire.push(
+      let toast = await this.toastCtr.create(
       {
-        telefoneRecidencial: this.values.telR ,
-        telCelular: this.values.telC,
-        indexType: this.values.indexType
+        message: "Voçê não tem Permissão para fazer este tipo de ação, por favor se logue para poder obter",
+        duration: 5000
       });
-
-      this.AlertSucess();
+      toast.present();  
     }
-
+    else 
+    {
+      if(this.checkOut())
+      {
+        this.listAngularFire.push(
+        {
+          idUser: user.auth.currentUser.uid,
+          telefoneRecidencial: this.values.telR ,
+          telCelular: this.values.telC,
+          indexType: this.values.indexType
+        });
+        this.AlertSucess();
+      }
+    }
+  
   }
 
   checkOut()

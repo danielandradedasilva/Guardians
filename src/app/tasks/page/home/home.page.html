@@ -10,17 +10,13 @@
 
 <ion-content padding>
 
-    <ion-card>
+    <ion-card *ngFor="let card of cardsValues">
         <ion-card-header>
-          <ion-card-subtitle>Pensão Alimenticia</ion-card-subtitle>
-          <ion-card-title>O dever do Guardians</ion-card-title>
+          <ion-card-subtitle>{{card.title}}</ion-card-subtitle>
+          <ion-card-title>{{card.subtitle}}</ion-card-title>
         </ion-card-header>
-      
-        <ion-card-content>
-            Pensão alimentícia é o valor pago a uma pessoa 
-            para o suprimento de suas necessidades básicas de sobrevivência e manutenção.
-        </ion-card-content>
-      </ion-card>
+        <ion-card-content>{{card.description}}</ion-card-content>
+    </ion-card>
 
 
     <!-- Botões  -->
@@ -48,4 +44,5 @@
 
         </ion-tab-bar>
     </ion-tabs>
+    
 </ion-content>
