@@ -23,38 +23,48 @@ export class LoginPage implements OnInit {
   };
   private nameControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
 
-  constructor(private authService: AuthService,
-              private navCtrl: NavController,
-              private menuController: MenuController,
-              private route: ActivatedRoute,
-              private fb: FormBuilder,
-              private overlayService: OverlayService) { }
+  constructor(
+    private authService: AuthService,
+    private navCtrl: NavController,
+    private menuController: MenuController,
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private overlayService: OverlayService
+  ) { }
 
-    /* configuração de validação */
-  ngOnInit(): void {
+  /* configuração de validação */
+  ngOnInit(): void 
+  {
     this.createForm();
   }
-  private createForm(): void {
-    this.authForm = this.fb.group({
+
+  private createForm(): void 
+  {
+    this.authForm = this.fb.group(
+    {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
-  get name(): FormControl {
+  get name(): FormControl 
+  {
     return this.authForm.get('name') as FormControl;
   }
 
-  get email(): FormControl {
+  get email(): FormControl 
+  {
     return this.authForm.get('email') as FormControl;
   }
 
-  get password(): FormControl {
+  get password(): FormControl 
+  {
     return this.authForm.get('password') as FormControl;
   }
 
-    /*Configurações dos botoes entrar,criar uma conta e já tenho uma conta */
-  changeAuthAction(): void {
+  /*Configurações dos botoes entrar,criar uma conta e já tenho uma conta */
+  changeAuthAction(): void 
+  {
     this.configs.isSignIn = !this.configs.isSignIn;
     const { isSignIn} = this.configs;
     this.configs.action = isSignIn ? 'Entrar' : 'Criar uma conta !';
@@ -63,12 +73,15 @@ export class LoginPage implements OnInit {
       ? this.authForm.addControl('name', this.nameControl)
       : this.authForm.removeControl('name');
   }
-
-     /*Autenticação dos dados de login */
-   async onSubmit(provider: AuthProvider): Promise<void> {
-     const loading = await this.overlayService.loading();
-     try {
-      const credentials = await this.authService.authenticate({
+  
+  /*Autenticação dos dados de login */
+  async onSubmit(provider: AuthProvider): Promise<void> 
+  {
+    const loading = await this.overlayService.loading();
+   try
+   {  
+      const credentials = await this.authService.authenticate(
+      {
         isSignIn: this.configs.isSignIn,
         user: this.authForm.value,
         provider
@@ -76,18 +89,26 @@ export class LoginPage implements OnInit {
       /* metodo para navegar para pagiana menu-cadastro, se o usuário efetuar o login co sucesso*/
       this.navCtrl.navigateForward(this.route.snapshot.queryParamMap.get('redirect') || '/home');
       /* fim */
-    } catch (e) {
-      await this.overlayService.toast();
-    } finally {
-      loading.dismiss();
-    }
+   } 
+   catch (e) 
+   {
+     await this.overlayService.toast();
+   } 
+   finally 
+   {
+     loading.dismiss();
+   }
+
   }
 
-  ionViewDidEnter() {
+  ionViewDidEnter() 
+  {
    this.menuController.enable(false);
   }
 
-  ionViewWillLeave() {
+  ionViewWillLeave() 
+  {
    this.menuController.enable(true);
   }
+
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-contatos-urgencia',
@@ -24,7 +25,11 @@ export class ContatosUrgenciaPage implements OnInit
     { value: 5, name: "Outros" }
   ];
 
-  constructor(private navCtrl: NavController, private firebaseDB: AngularFireDatabase) { }
+  constructor(
+    private navCtrl: NavController, 
+    private firebaseDB: AngularFireDatabase,
+    private angularFireAuth: AngularFireAuth
+  ) { }
 
   ngOnInit()
   {
@@ -33,10 +38,14 @@ export class ContatosUrgenciaPage implements OnInit
 
   GetValuesInBD()
   {
+    let user = this.angularFireAuth;
     this.listAngulaFire = this.firebaseDB.list('/contatoUrgencias', values => values.orderByChild('indexType'));
+    
     this.listAngulaFire.valueChanges().subscribe(resultValue =>
     {
-      this.FilterValues(resultValue);
+      let result = resultValue.filter(valueChart => user.auth.currentUser.uid == valueChart.idUser);
+      
+      this.FilterValues(result);
     });
   }
 

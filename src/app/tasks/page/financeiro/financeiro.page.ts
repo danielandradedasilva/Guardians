@@ -4,6 +4,7 @@ import { NavController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 import { Chart } from 'chart.js'; 
 
@@ -15,7 +16,8 @@ import { Chart } from 'chart.js';
 export class FinanceiroPage implements OnInit {
 
   data: Observable<any[]>;
-  listAngulaFire: AngularFireList<any>; 
+  listAngulaFire: AngularFireList<any>;
+
 
   reportByMonth = 
   {
@@ -62,50 +64,85 @@ export class FinanceiroPage implements OnInit {
   chartData = null;
 
 
-  constructor(private navCtrl: NavController, private firebaseDB: AngularFireDatabase, private toastCtr: ToastController ) { }
+  constructor(
+    private navCtrl: NavController, 
+    private firebaseDB: AngularFireDatabase, 
+    private toastCtr: ToastController,
+    private angularFireAuth: AngularFireAuth
+  ) { }
 
   ngOnInit() 
   {
     this.beforeLoadChart();
   }
 
-  beforeLoadChart()
+  async beforeLoadChart()
   {
-    this.listAngulaFire = this.firebaseDB.list('/valuesChart', values => values.orderByChild('month'));
-    this.listAngulaFire.valueChanges().subscribe(resultValue =>
+    let user = this.angularFireAuth;
+    
+    if(user.auth.currentUser == null)
     {
-      if(this.chartData)
+      let toast = await this.toastCtr.create(
       {
-        this.updateChart(resultValue);
-      }
-      else
-      {
-        this.createCharts(resultValue);
-      }
+        message: "Voçê Não se conectou, por favor se conect para obter seus Dados",
+        duration: 5000
+      });
+      toast.present();
+    }
+    else 
+    {
+      this.listAngulaFire = this.firebaseDB.list('/valuesChart', values => values.orderByChild('month'));
       
-    });
+      this.listAngulaFire.valueChanges().subscribe(resultValue =>
+      {
+        let result = resultValue.filter(valueChart => user.auth.currentUser.uid == valueChart.idUser);
+        
+        if(this.chartData)
+        {
+          this.updateChart(result);
+        }
+        else
+        {
+          this.createCharts(result);
+        }
+
+      });
+    }
   }
   
 
-  addTransaction() 
+  async addTransaction() 
   {
-    this.listAngulaFire = this.firebaseDB.list('/valuesChart');
-
-    if(this.CheckOut())
+    let user = this.angularFireAuth;
+    if(user.auth.currentUser == null)
     {
-      this.listAngulaFire.push(
+      let toast = await this.toastCtr.create(
       {
-        value: this.Transaction.value, 
-        month: this.Transaction.month,
-        note: this.Transaction.note
+        message: "Voçê Não tem permissão para este tipo de ação.",
+        duration: 5000
       });
-      this.AlertSucess();
-      this.beforeLoadChart();
+      toast.present();
     }
-      
-    // Return of Myobjecsts;
-    console.log('Moths: ',  this.Transaction.month);
-    console.log('value: ',  this.Transaction.value);
+    else 
+    {
+      this.listAngulaFire = this.firebaseDB.list('/valuesChart');
+      if(this.CheckOut())
+      {
+        this.listAngulaFire.push(
+        {
+          idUser: user.auth.currentUser.uid,
+          value: this.Transaction.value, 
+          month: this.Transaction.month,
+          note: this.Transaction.note
+        });
+        this.AlertSucess();
+        this.beforeLoadChart();
+      }
+
+      // Return of Myobjecsts;
+      console.log('Moths: ',  this.Transaction.month);
+      console.log('value: ',  this.Transaction.value);
+    }
   }
     
   CheckOut()
@@ -133,7 +170,7 @@ export class FinanceiroPage implements OnInit {
     if(errors.length > 0)
     {
       this.AlertErrors(errors);
-      return false
+      return false;
     }
     else
     {
@@ -206,9 +243,9 @@ export class FinanceiroPage implements OnInit {
         labels: Object.keys(this.Months).map(indexM => this.Months[indexM].name),
         datasets: 
         [{
-            data: chartData,
-            backgroundColor: '#3880ff',
-            borderWidth: 1
+          data: chartData,
+          backgroundColor: '#3880ff',
+          borderWidth: 1
         }]
       },
       options: 
@@ -221,14 +258,14 @@ export class FinanceiroPage implements OnInit {
         {
           yAxes: 
           [{
-              ticks: 
+            ticks: 
+            {
+              callback: function (value)
               {
-                callback: function (value)
-                {
-                  return 'R$: ' + value; 
-                },
-                beginAtZero: true
-              }
+                return 'R$: ' + value; 
+              },
+              beginAtZero: true
+            }
           }]
         }
       }
